@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+       <p class="error"></p>
+       <form class="login">
+           <fieldset>
+
+            <legend>Login Form</legend>
+             <label >Email</label><br>
+             <input type="email"  id="email" placeholder="Enter your Email">
+             <br><br>
+             <label for="password">Password</label><br>
+             <input type="password" id="password" placeholder="Enter your password">
+             <br><br>
+
+             <input type="submit">
+
+            </fieldset>
+       </form>
+
+       <script>
+     
+           const currentUser=[];
+           currentUser[0]="John";
+          let login_form  = document.querySelector('.login');
+            let error = document.querySelector('.error');
+
+          login_form.addEventListener('submit', login)
+          let login_email = document.querySelector('#email');
+          let login_password = document.querySelector('#password');
+          let data
+          function login(e){
+            e.preventDefault();
+            data = JSON.parse(localStorage.getItem('data'));
+            let email = login_email.value;
+            let password = login_password.value;
+            let cases = ["Email not found", "Password Incorrect", "Login Successful"]
+             let x = checklog(email, password)
+              if(x==0 || x==1){
+                    error.innerHTML = cases[x]
+
+              }
+              else{
+                    error.innerHTML = cases[x]  
+                   let token=generateToken();let id=currentUser.length++;
+                   data.forEach((item)=>{
+                     if(item.email==email && item.password==password)
+                     {
+                       let names=item.name;
+                         let email=item.email;
+                         let password=item.password;
+                         let brr={
+                            name:`${names}`,
+                            email:`${email}`,
+                            password:`${password}`,
+                            token:`${token}`
+                         }
+   currentUser.push(brr);
+   login_email.value="";
+   login_password.value="";
+   localStorage.setItem("data" , JSON.stringify(currentUser))
+ window.location.href = "dashboard.html";
+
+                     }  
+                   })
+
+                   
+
+              }
+                  
+          }
+          
+
+          function checklog(email, password){
+            let flag = 0
+             for(let t of data){
+                if(t.email == email){
+                    if(t.password == password){
+                        return 2;
+                    }
+                    else{
+                        return 1
+                    }
+                    flag = 1
+                }
+             }
+             if(flag == 0){
+                 return 0
+             }
+          }
+
+
+
+
+
+
+
+
+
+
+          function generateToken(){
+             let capital_digit = "ABCDEFGHIJKLM" 
+             let small_digit = "abcdefghi" 
+             let number = "0123456789" 
+             let special = "!@#$%^&*()_+" 
+
+             let char = capital_digit + small_digit + number + special
+
+             let token = ""
+             for(let i=0; i<16; i++){
+                 let random = Math.floor(Math.random()*char.length) // 4
+                 token = token + char[random]
+             }
+                return token //  store the token in the perosn object who logged in
+          }
+
+
+          function generateToken1(){
+            //   let token = crypto.randomUUID() // extract 10 charcaters from it
+          }
+              
+          
+
+       </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+body
+{
+    height:200px;
+    width:200px;
+    background-color:pink;
+}
+
+#emsg
+{
+    color: brown;
+}
+
+</style>
+
+
+
+<body>
+    <h1>SignUP</h1>
+    <label>Name</label>
+   &nbsp;&nbsp;&nbsp; <input type="text" onkeyup="Namecheck(this.value)" id="nameentry">
+   <div id="name"></div>
+    <br>
+    <br>
+    <label>Email</label>
+   &nbsp; <input type="text" id="email" onkeyup="Emailcheck(this.value)" >
+   <div id="emsg"></div>
+    <br>
+    <br>
+    <label>password</label>
+   &nbsp;&nbsp; <input type="text" onkeyup="Passcheck(this.value)" id="password">
+   <div id="msg"></div>
+<br>
+<br>
+   
+     <p class="password-check"> 1 lower case character</p>
+     <br>
+     <p class="password-check"> 1 upper case character</p>
+     <br>
+     <p class="password-check"> 1 numerical  character</p>
+     <br>
+     <p class="password-check"> 1 special character</p>
+    <br>
+    <br>
+    <label>confirm password</label>
+    &nbsp;&nbsp;<input type="text" id="confirm" onkeyup="concheck(this.value)">
+    <div id="con"></div>
+    
+    <button id="submit">Submit</button>
+    <div id="doneval"></div>
+    <script src="script.js" ></script>
+ 
+</body>
+</html>
