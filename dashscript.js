@@ -64,7 +64,7 @@ data.forEach(element => {
 
   if(element!=null)
   {
-   if(element.password==pass1)
+   if(element.password==pass1 && pass1!="" && npass!="")
    {
        element.password=npass;
 
